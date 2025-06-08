@@ -207,20 +207,24 @@ def scenario(
     config = Config("", args={})
     available_drivers = list(api.drivers(config).keys())
     if driver_name not in available_drivers:
-        if len(available_drivers) == 1 and available_drivers[0] == 'default':
-            click.echo(click.style(
-                f"Driver '{driver_name}' not available.\n\n"
-                f"Install cloud drivers with:\n"
-                f"  pip install molecule-plugins\n\n"
-                f"Currently available drivers: {available_drivers}\n",
-                fg='red'
-            ), err=True)
+        if len(available_drivers) == 1 and available_drivers[0] == "default":
+            click.echo(
+                click.style(
+                    f"Driver '{driver_name}' not available.\n\n"
+                    f"Install cloud drivers with:\n"
+                    f"  pip install molecule-plugins\n\n"
+                    f"Currently available drivers: {available_drivers}\n",
+                    fg="red",
+                ), err=True,
+            )
         else:
-            click.echo(click.style(
-                f"Driver '{driver_name}' not available.\n"
-                f"Available drivers: {available_drivers}",
-                fg='red'
-            ), err=True)
+            click.echo(
+                click.style(
+                    f"Driver '{driver_name}' not available.\n"
+                    f"Available drivers: {available_drivers}",
+                    fg="red",
+                ), err=True,
+            )
         raise click.Abort()
 
     command_args: CommandArgs = {
